@@ -1,0 +1,39 @@
+.search_bar{
+  border: 1px solid;
+  background-color: greenyellow;
+  border-radius: 15px;
+  font-size: xx-large;
+  font-family: sans-serif;
+  color: black;
+  width: 730px;
+  height: 75px;
+  position: fixed;
+  top: 40%;
+  left: 25%;
+}
+
+.search_icon{
+  border: 1px solid;
+  background-color: greenyellow;
+  border-radius: 15px;
+  font-size: 55px;
+  font-family: sans-serif;
+  color: black;
+  width: 100px;
+  height: 75px;
+  position: fixed;
+  top: 40%;
+  right: 30%;
+  text-align: center;
+  text-decoration: none;
+}
+
+input:focus{
+  outline: none;
+}
+
+.dataResult{
+  position: fixed;
+  top: 60%;
+  left: 50%;
+}

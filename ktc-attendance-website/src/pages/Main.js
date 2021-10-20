@@ -1,10 +1,8 @@
 import {Link} from "react-router-dom";
 
+import SearchBar from "../components/search/SearchBar";
+
 function MainPage() {
-  
-    function studentSearchHandler() {
-  
-    }
   
     return (
   
@@ -15,14 +13,7 @@ function MainPage() {
             id="page-btn" 
             className="btn-textfield">Register Student</Link>
   
-            <form onSubmit={studentSearchHandler}>
-                <input
-                    type="text"
-                    id="search-bar"
-                    className="btn-textfield"
-                    placeholder="Search..." />
-                <button id="search-btn" className="btn-textfield">Search</button>
-            </form>
+            <SearchBar />
   
       </div>
   

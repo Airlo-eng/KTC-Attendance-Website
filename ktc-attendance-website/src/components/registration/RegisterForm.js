@@ -34,8 +34,6 @@ function RegisterForm(props) {
 
         props.onAddMeetup(studentData);
 
-        console.log(studentData);
-
     }
         
     return (
@@ -125,6 +123,7 @@ function RegisterForm(props) {
                             ref={homeAddressInputRef}
                         />
                     </div>
+                    <br/><br/>
                     <button id="studentRegisterButton" className="btn-textfield">Register Student</button>
                     <br/>
                 </form>
