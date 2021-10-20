@@ -3,11 +3,13 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import {useState} from "react";
 
+import SearchResults from "./SearchResults";
+
 function SearchBar() {
 
-    //TODO: DONE (Gain access to firebase database and get info for search bar) to display student name properties. Add page to view specific student's details.
+    //TODO: DONE (Gain access to firebase database and get info for search bar to display student name properties) with results appear under search bar. Add page to view specific student's details.
 
-    const [result, setResult] = useState(["e"]);
+    const [result, setResult] = useState(["e", "o", "i", "u", "u"]);
     const [queryString, setQueryString] = useState("");
 
     function searchHandler() {
@@ -16,21 +18,22 @@ function SearchBar() {
         )
         .then(response => response.json())
         .then(data => {
-            Object.keys(data).filter(element => {
-                if (queryString === "") {
-                    setResult(data[element].studentName);
-                    //setResult(result.push(data[element].studentName));
-                }
-                else if (data[element].studentName.toLowerCase().includes(queryString.toLowerCase())) {
-                    setResult(data[element].studentName);
-                    //setResult(result.push(data[element].studentName));
-                }
-                //setResult(result.join("<br/>"));
-                return data[element].studentName;
-            })
-        });
+        if (queryString === "") {
+          setResult(
+            Object.keys(data).map((element) => data[element].studentName)
+          );
+        } 
+        else {
+          setResult(
+            Object.keys(data).filter((element) => {
+                return data[element].studentName.toLowerCase().includes(queryString.toLowerCase());
+              }).map((filteredElement) => data[filteredElement].studentName)
+          );
+        }
+      });
 
-    }
+}
+    
     
     return (
 
@@ -46,7 +49,7 @@ function SearchBar() {
                     onChange={event => setQueryString(event.target.value)}
                 />
 
-                <button className={classes.search_icon} onClick={searchHandler}>
+                <button className={classes.search_icon} onClick={searchHandler(queryString)}>
                     <SearchIcon />
                 </button>
 
@@ -55,12 +58,15 @@ function SearchBar() {
             <div className={classes.dataResult}>
                 Result:
                 <br/><br/>
-                {result}
+                <span dangerouslySetInnerHTML={{__html: result.join('<br />')}} />
                 <br/><br/><br/><br/>
                 Query String:
                 <br/><br/>
                 {queryString}
                 <br/><br/>
+
+                <SearchResults />
+
             </div>
 
         </div>
