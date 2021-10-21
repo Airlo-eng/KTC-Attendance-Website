@@ -15,7 +15,7 @@ function App() {
         <Route path="/register_student">
           <RegisterPage />
         </Route>
-        <Route path="/student_info/:id">
+        <Route path="/student_info/">
           <StudentInfo />
         </Route>
       </Switch>
