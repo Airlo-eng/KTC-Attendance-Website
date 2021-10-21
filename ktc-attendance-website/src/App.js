@@ -1,7 +1,7 @@
 import {Route, Switch} from "react-router-dom";
 import MainPage from "./pages/Main";
 import RegisterPage from "./pages/Register";
-import StudentPage from "./pages/StudentInfo";
+import StudentInfo from "./pages/StudentInfo";
 
 function App() {
 
@@ -15,8 +15,8 @@ function App() {
         <Route path="/register_student">
           <RegisterPage />
         </Route>
-        <Route path="/student_info">
-          <StudentPage />
+        <Route path="/student_info_">
+          <StudentInfo />
         </Route>
       </Switch>
     </div>

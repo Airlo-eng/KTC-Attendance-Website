@@ -1,10 +1,13 @@
 function StudentInfo() {
 
+    const pathName = this.location.pathname;
+
     return (
 
-        <div>
+        <div className="btn-textfield">
 
-            
+            {pathName}
+            E
 
         </div>
 
