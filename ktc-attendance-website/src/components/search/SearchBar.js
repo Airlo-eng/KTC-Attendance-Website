@@ -6,9 +6,7 @@ import {useState} from "react";
 import SearchResults from "./SearchResults";
 
 function SearchBar() {
-
-    //TODO: DONE (Gain access to firebase database and get info for search bar to display student name properties) with results appear under search bar. Add page to view specific student's details.
-
+    
     const [result, setResult] = useState([]);
     const [queryString, setQueryString] = useState("");
 
