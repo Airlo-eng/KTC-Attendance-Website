@@ -1,13 +1,14 @@
+import {useParams} from "react-router-dom";
+
 function StudentInfo() {
 
-    const pathName = this.location.pathname;
+    const {id} = useParams();
 
     return (
 
         <div className="btn-textfield">
 
-            {pathName}
-            E
+            {id}
 
         </div>
 
