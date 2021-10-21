@@ -1,10 +1,21 @@
-import classes from "./SearchBar.module.css";
+import { Link } from "react-router-dom";
 
-function SearchResults() {
+import classes from "./SearchResults.module.css";
+
+function SearchResults(props) {
+
+    var results = props.results;
 
     return (
 
-        <div className={classes.searchResults}>
+        <div className={classes.searchBox}>
+
+            {results.map(element => (
+                <Link className={classes.SearchResults} key={element.id} to={"/student_info_"+element}>
+                    {element}
+                    <br/>
+                </Link>
+            ))}
 
         </div>
 

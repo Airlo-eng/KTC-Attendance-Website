@@ -9,7 +9,7 @@ function SearchBar() {
 
     //TODO: DONE (Gain access to firebase database and get info for search bar to display student name properties) with results appear under search bar. Add page to view specific student's details.
 
-    const [result, setResult] = useState(["e", "o", "i", "u", "u"]);
+    const [result, setResult] = useState([]);
     const [queryString, setQueryString] = useState("");
 
     function searchHandler() {
@@ -19,9 +19,9 @@ function SearchBar() {
         .then(response => response.json())
         .then(data => {
         if (queryString === "") {
-          setResult(
-            Object.keys(data).map((element) => data[element].studentName)
-          );
+          //setResult(
+            //Object.keys(data).map((element) => data[element].studentName)
+          //);
         } 
         else {
           setResult(
@@ -55,17 +55,9 @@ function SearchBar() {
 
             </div>
 
-            <div className={classes.dataResult}>
-                Result:
-                <br/><br/>
-                <span dangerouslySetInnerHTML={{__html: result.join('<br />')}} />
-                <br/><br/><br/><br/>
-                Query String:
-                <br/><br/>
-                {queryString}
-                <br/><br/>
+            <div>
 
-                <SearchResults />
+                <SearchResults results={result} />
 
             </div>
 

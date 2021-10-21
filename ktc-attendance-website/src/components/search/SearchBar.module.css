@@ -31,9 +31,3 @@
 input:focus{
   outline: none;
 }
-
-.dataResult{
-  position: fixed;
-  top: 60%;
-  left: 50%;
-}
