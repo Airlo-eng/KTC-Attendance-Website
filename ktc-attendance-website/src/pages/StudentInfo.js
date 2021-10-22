@@ -21,6 +21,7 @@ function StudentInfo() {
                 if (data[element].studentName.toLowerCase() === id.toLowerCase()) {
                     setStudent(data[element]);
                 }
+                return data[element];
             })
             
         })
