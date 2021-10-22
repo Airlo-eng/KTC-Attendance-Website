@@ -25,11 +25,10 @@ function SearchBar() {
           setResult(
             Object.keys(data).filter((element) => {
                 return data[element].studentName.toLowerCase().includes(queryString.toLowerCase());
-              }).map((filteredElement) => data[filteredElement].studentName)
+            }).map((filteredElement) => data[filteredElement].studentName)
           );
         }
-      });
-
+    });
 }
     
     
