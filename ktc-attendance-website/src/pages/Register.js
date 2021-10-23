@@ -12,7 +12,7 @@ function Register() {
                 method: "POST",
                 body: JSON.stringify(studentData),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 }
             }
         )
@@ -22,11 +22,9 @@ function Register() {
     }
 
     return (
-
         <section>
-            <RegisterForm onAddMeetup={addStudentHandler} />
+            <RegisterForm onAddStudent={addStudentHandler} />
         </section>
-
     );
 
 }

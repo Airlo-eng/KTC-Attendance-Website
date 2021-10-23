@@ -1,7 +1,7 @@
 import {Route, Switch} from "react-router-dom";
 import MainPage from "./pages/Main";
 import RegisterPage from "./pages/Register";
-import StudentInfo from "./pages/StudentInfo";
+import StudentPage from "./pages/StudentPage";
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
           <RegisterPage />
         </Route>
         <Route path="/student_info/:id">
-          <StudentInfo />
+          <StudentPage />
         </Route>
       </Switch>
     </div>

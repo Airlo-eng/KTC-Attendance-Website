@@ -1,0 +1,53 @@
+.info_box{
+    border: 1px solid;
+    background-color: greenyellow;
+    border-radius: 15px;
+    font-size: xx-large;
+    font-family: sans-serif;
+    color: black;
+}
+  
+.main_page_button{
+    border: 1px solid;
+    background-color: greenyellow;
+    border-radius: 15px;
+    font-size: xx-large;
+    font-family: sans-serif;
+    color: black;
+    padding: 10px;
+    position: fixed;
+    text-decoration: none;
+    left: 1%;
+    top: 2%;
+}
+  
+.info{
+    margin: 20px;
+}
+  
+.label{
+    color: black;
+}
+  
+.textfield{
+    width: max-content;
+    background: white;
+    border-radius: 15px;
+    border: 1px solid;
+    padding: 3px;
+    font-size: xx-large;
+}
+
+.editOnOrOff{
+    border: 1px solid;
+    background-color: greenyellow;
+    border-radius: 15px;
+    font-size: xx-large;
+    font-family: sans-serif;
+    color: black;
+    padding: 10px;
+    position: fixed;
+    text-decoration: none;
+    right: 1%;
+    bottom: 26.5%;
+}

@@ -10,8 +10,8 @@ function SearchResults(props) {
 
         <div className={classes.searchBox}>
 
-            {results.map(element => (
-                <Link className={classes.SearchResults} key={element.id} to={"/student_info/"+element}>
+            {results.map((element, index) => (
+                <Link className={classes.SearchResults} key={index} to={"/student_info/"+element}>
                     {element}
                     <br/>
                 </Link>

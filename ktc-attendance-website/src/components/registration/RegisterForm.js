@@ -5,7 +5,7 @@ import classes from "./RegisterForm.module.css";
 
 function RegisterForm(props) {
 
-    const nameInputRef = useRef();
+    const studentNameInputRef = useRef();
     const yearGroupInputRef = useRef();
     const currentSchoolInputRef = useRef();
     const parentOrGuardianInputRef = useRef();
@@ -16,7 +16,7 @@ function RegisterForm(props) {
 
         event.preventDefault();
 
-        const enteredStudentName = nameInputRef.current.value;
+        const enteredStudentName = studentNameInputRef.current.value;
         const enteredYearGroup = yearGroupInputRef.current.value;
         const enteredCurrentSchool = currentSchoolInputRef.current.value;
         const enteredParentOrGuardian = parentOrGuardianInputRef.current.value;
@@ -32,7 +32,7 @@ function RegisterForm(props) {
             homeAddress: enteredHomeAddress
         };
 
-        props.onAddMeetup(studentData);
+        props.onAddStudent(studentData);
 
     }
         
@@ -54,7 +54,7 @@ function RegisterForm(props) {
                             className={classes.textfield} 
                             placeholder="Student Name"
                             required
-                            ref={nameInputRef}
+                            ref={studentNameInputRef}
                         />
                     </div>
                     <br/><br/>
