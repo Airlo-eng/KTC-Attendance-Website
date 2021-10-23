@@ -1,5 +1,6 @@
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import {Link} from "react-router-dom";
+import {useHistory} from "react-router";
 
 import classes from "./StudentInfo.module.css";
 
@@ -20,46 +21,11 @@ function StudentInfo(props) {
     const parentOrGuardianInputRef = useRef();
     const phoneNumberInputRef = useRef();
     const homeAddressInputRef = useRef();
-    
-    fetch(
-        "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students.json"
-    )
-    .then(response => response.json())
-    .then(data => {
-        Object.keys(data).filter(element => {
-            if (data[element].studentName.toLowerCase() === id.toLowerCase()) {
-                setStudentInfo(data[element]);
-            }
-            return data[element];
-        })
-            
-    })
 
-    function setEditingOn() {
+    const history = useHistory();
 
-        setIsEditing(true);
-
+    useEffect(() => {
         
-    }
-
-    function setEditingOff() {
-        
-        const enteredStudentName = studentNameInputRef.current.value;
-        const enteredYearGroup = yearGroupInputRef.current.value;
-        const enteredCurrentSchool = currentSchoolInputRef.current.value;
-        const enteredParentOrGuardian = parentOrGuardianInputRef.current.value;
-        const enteredPhoneNumber = phoneNumberInputRef.current.value;
-        const enteredHomeAddress = homeAddressInputRef.current.value;
-
-        const studentData = {
-            studentName: enteredStudentName,
-            yearGroup: enteredYearGroup,
-            currentSchool: enteredCurrentSchool,
-            parentOrGuardian: enteredParentOrGuardian,
-            phoneNumber: enteredPhoneNumber,
-            homeAddress: enteredHomeAddress
-        };
-
         fetch(
             "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students.json"
         )
@@ -67,12 +33,71 @@ function StudentInfo(props) {
         .then(data => {
             Object.keys(data).filter(element => {
                 if (data[element].studentName.toLowerCase() === id.toLowerCase()) {
-                    data[element] = studentData;
-                    console.log(data[element]);
+                    setStudentInfo(data[element]);
+                    console.log(id);
                 }
                 return data[element];
             })
-                
+        })
+        return id;
+    }, [id]);
+    
+
+    function setEditingOn() {
+
+        setIsEditing(true);
+        
+    }
+
+    function setEditingOff() {
+        
+        const newStudentName = studentNameInputRef.current.value;
+        const newYearGroup = yearGroupInputRef.current.value;
+        const newCurrentSchool = currentSchoolInputRef.current.value;
+        const newParentOrGuardian = parentOrGuardianInputRef.current.value;
+        const newPhoneNumber = phoneNumberInputRef.current.value;
+        const newHomeAddress = homeAddressInputRef.current.value;
+
+        const studentData = {
+            studentName: newStudentName,
+            yearGroup: newYearGroup,
+            currentSchool: newCurrentSchool,
+            parentOrGuardian: newParentOrGuardian,
+            phoneNumber: newPhoneNumber,
+            homeAddress: newHomeAddress
+        };
+
+        fetch(
+            "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+studentInfo.studentName+".json",
+            {
+                method: "DELETE",
+                body: JSON.stringify(studentData),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+        )
+        .then(() => {
+            fetch(
+                "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+studentData.studentName+".json",
+                {
+                    method: "PUT",
+                    body: JSON.stringify(studentData),
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }
+            )
+            .then(response => response.json())
+            .then(data => {
+                Object.keys(data).filter(element => {
+                    setStudentInfo(studentData);
+                    return data[element];
+                })
+                    
+            });
+
+            history.replace("/student_info/"+studentData.studentName);
         })
         
         setIsEditing(false);

@@ -7,9 +7,9 @@ function Register() {
 
     function addStudentHandler(studentData) {
         fetch(
-            "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students.json",
+            "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+studentData.studentName+".json",
             {
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify(studentData),
                 headers: {
                     "Content-Type": "application/json",
