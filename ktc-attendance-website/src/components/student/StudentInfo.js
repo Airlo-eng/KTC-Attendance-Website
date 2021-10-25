@@ -6,9 +6,7 @@ import classes from "./StudentInfo.module.css";
 
 function StudentInfo(props) {
 
-    //TODO: Add payment checker feature. Add notes. FIX EDITING!
-
-
+    //TODO: Add payment checker feature. Add notes.
 
     const id = props.id;
 
@@ -21,6 +19,8 @@ function StudentInfo(props) {
     const parentOrGuardianInputRef = useRef();
     const phoneNumberInputRef = useRef();
     const homeAddressInputRef = useRef();
+    const studentNotesInputRef = useRef();
+    const paidOrUnpaidInputRef = useRef();
 
     const history = useHistory();
 
@@ -57,14 +57,25 @@ function StudentInfo(props) {
         const newParentOrGuardian = parentOrGuardianInputRef.current.value;
         const newPhoneNumber = phoneNumberInputRef.current.value;
         const newHomeAddress = homeAddressInputRef.current.value;
+        const newStudentNotes = studentNotesInputRef.current.value;
+        var newPaid;
 
+        if (paidOrUnpaidInputRef === "on") {
+            newPaid = "yes";
+        }
+        else {
+            newPaid = "no";
+        }
+ 
         const studentData = {
             studentName: newStudentName,
             yearGroup: newYearGroup,
             currentSchool: newCurrentSchool,
             parentOrGuardian: newParentOrGuardian,
             phoneNumber: newPhoneNumber,
-            homeAddress: newHomeAddress
+            homeAddress: newHomeAddress,
+            studentNotes: newStudentNotes,
+            paid: newPaid
         };
 
         fetch(
@@ -215,13 +226,39 @@ function StudentInfo(props) {
                     />
                     }
                 </div>
-                <br/><br/>
-
-                <div className={classes.label}>Notes:</div>
                 <br/>
-                <div className={classes.textfield}>Notes here</div>
+                <div className={classes.label}>Notes:
+                    {
+                        isEditing === false ? 
+                        <span className={classes.textfield}>{studentInfo.studentNotes}</span> 
+                        :
+                        <input 
+                            type="text" 
+                            id="studentName"
+                            className={classes.notes} 
+                            required
+                            defaultValue={studentInfo.studentNotes}
+                            ref={studentNotesInputRef}
+                        />
+                    }
+                </div>
 
-            </div>
+                <div className={classes.label}>Paid:</div>
+                    {
+                        isEditing === false ? 
+                        <span className={classes.paidOrUnpaid}>{studentInfo.paid}</span> 
+                        :
+                        <input 
+                            type="checkbox" 
+                            id="paidOrUnpaid"
+                            className={classes.paidOrUnpaid} 
+                            required
+                            placeholder="Yes = paid. Anything else = Unpaid"
+                            defaultValue={studentInfo.paid}
+                            ref={paidOrUnpaidInputRef}
+                        />
+                    }
+                </div>
 
             {
             isEditing === false ? <button className={classes.editOnOrOff} onClick={() => setEditingOn()}>Edit</button>

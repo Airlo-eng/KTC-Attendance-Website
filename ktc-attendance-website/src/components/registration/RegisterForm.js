@@ -11,6 +11,8 @@ function RegisterForm(props) {
     const parentOrGuardianInputRef = useRef();
     const phoneNumberInputRef = useRef();
     const homeAddressInputRef = useRef();
+    const studentNotesInputRef = useRef();
+    const paidOrUnpaidInputRef = useRef();
 
     function createStudentHandler(event) {
 
@@ -22,6 +24,8 @@ function RegisterForm(props) {
         const enteredParentOrGuardian = parentOrGuardianInputRef.current.value;
         const enteredPhoneNumber = phoneNumberInputRef.current.value;
         const enteredHomeAddress = homeAddressInputRef.current.value;
+        const enteredNotes = studentNotesInputRef.current.value;
+        const paid = paidOrUnpaidInputRef.current.value;
 
         const studentData = {
             studentName: enteredStudentName,
@@ -29,7 +33,9 @@ function RegisterForm(props) {
             currentSchool: enteredCurrentSchool,
             parentOrGuardian: enteredParentOrGuardian,
             phoneNumber: enteredPhoneNumber,
-            homeAddress: enteredHomeAddress
+            homeAddress: enteredHomeAddress,
+            studentNotes: enteredNotes,
+            paid: paid
         };
 
         props.onAddStudent(studentData);
@@ -123,6 +129,33 @@ function RegisterForm(props) {
                             ref={homeAddressInputRef}
                         />
                     </div>
+                    <br/><br/>
+                    <div id="studentNotes">
+                        <label htmlFor="studentNotes" className={classes.label}>Notes:</label>
+                        <br/>
+                        <input 
+                            type="text" 
+                            id="studentNotes" 
+                            className={classes.textfield} 
+                            placeholder="Notes Here"
+                            required
+                            ref={studentNotesInputRef}
+                        />
+                    </div>
+                    <br/><br/>
+                    <div id="paidOrUnpaid">
+                        <label htmlFor="paidOrUnpaid">Paid:</label>
+                        <br/>
+                        <input 
+                            type="text" 
+                            id="paidOrUnpaid"
+                            placeholder="Yes = paid. Anything else = Unpaid" 
+                            className={classes.textfield} 
+                            required
+                            ref={paidOrUnpaidInputRef}
+                        />
+                    </div>
+
                     <br/><br/>
                     <button id="studentRegisterButton" className="btn-textfield">Register Student</button>
                     <br/>

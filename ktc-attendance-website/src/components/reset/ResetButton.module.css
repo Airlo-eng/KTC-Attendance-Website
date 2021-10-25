@@ -1,0 +1,13 @@
+.resetButton{
+    border: 1px solid;
+    background-color: greenyellow;
+    border-radius: 15px;
+    font-size: xx-large;
+    font-family: sans-serif;
+    color: black;
+    padding: 10px;
+    position: fixed;
+    top: 1%;
+    right: 0.5%;
+    text-decoration: none;
+}

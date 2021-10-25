@@ -24,6 +24,7 @@
 
 .register_form{
   margin: 20px;
+  width: max-content;
 }
 
 .label{
@@ -31,7 +32,7 @@
 }
 
 .textfield{
-  width: min-content;
+  width: 150%;
   background: white;
   border-radius: 15px;
   border: 1px solid;

@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 
 import SearchBar from "../components/search/SearchBar";
+import ResetButton from "../components/reset/ResetButton";
 
 function MainPage() {
   
@@ -14,6 +15,8 @@ function MainPage() {
             className="btn-textfield">Register Student</Link>
   
             <SearchBar />
+
+            <ResetButton />
   
       </div>
   
