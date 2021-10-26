@@ -16,20 +16,18 @@ function SearchBar() {
         )
         .then(response => response.json())
         .then(data => {
-        if (queryString === "") {
-          //setResult(
-            //Object.keys(data).map((element) => data[element].studentName)
-          //);
-        } 
-        else {
-          setResult(
-            Object.keys(data).filter((element) => {
-                return data[element].studentName.toLowerCase().includes(queryString.toLowerCase());
-            }).map((filteredElement) => data[filteredElement].studentName)
-          );
-        }
-    });
-}
+            if (queryString === "") {
+                
+            } 
+            else {
+            setResult(
+                Object.keys(data).filter((element) => {
+                    return data[element].studentName.toLowerCase().includes(queryString.toLowerCase());
+                }).map((filteredElement) => data[filteredElement].studentName)
+            );
+            }
+        });
+    }
     
     
     return (

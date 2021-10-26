@@ -58,14 +58,7 @@ function StudentInfo(props) {
         const newPhoneNumber = phoneNumberInputRef.current.value;
         const newHomeAddress = homeAddressInputRef.current.value;
         const newStudentNotes = studentNotesInputRef.current.value;
-        var newPaid;
-
-        if (paidOrUnpaidInputRef === "on") {
-            newPaid = "yes";
-        }
-        else {
-            newPaid = "no";
-        }
+        const newPaid = paidOrUnpaidInputRef.current.value;
  
         const studentData = {
             studentName: newStudentName,
@@ -242,16 +235,16 @@ function StudentInfo(props) {
                         />
                     }
                 </div>
-
-                <div className={classes.label}>Paid:</div>
+                <br/>
+                <div className={classes.label}>Paid:
                     {
                         isEditing === false ? 
-                        <span className={classes.paidOrUnpaid}>{studentInfo.paid}</span> 
+                        <span className={classes.textfield}>{studentInfo.paid}</span> 
                         :
                         <input 
-                            type="checkbox" 
+                            type="text" 
                             id="paidOrUnpaid"
-                            className={classes.paidOrUnpaid} 
+                            className={classes.textfield} 
                             required
                             placeholder="Yes = paid. Anything else = Unpaid"
                             defaultValue={studentInfo.paid}
@@ -259,6 +252,8 @@ function StudentInfo(props) {
                         />
                     }
                 </div>
+
+            </div>
 
             {
             isEditing === false ? <button className={classes.editOnOrOff} onClick={() => setEditingOn()}>Edit</button>
