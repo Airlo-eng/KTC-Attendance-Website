@@ -20,8 +20,7 @@ function ResetForm() {
             .then(response => response.json())
             .then(data => {
                 Object.keys(data).forEach(element => {
-                    if (data[element].paid.toLowerCase() === "yes") {
-                        //setStudentInfo(data[element]);
+                    if (data[element].paid.toLowerCase().includes("yes")) {
                         fetch(
                             "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+data[element].studentName+".json",
                             {
@@ -49,7 +48,7 @@ function ResetForm() {
                     if (isNaN(yearGroupInputRef.current.value)) {
                         console.log("Entered Year Group is not a valid Year Group");
                     }
-                    else if (data[element].yearGroup === yearGroupInputRef.current.value && data[element].paid.toLowerCase() === "yes") {
+                    else if (data[element].yearGroup === yearGroupInputRef.current.value && data[element].paid.toLowerCase().includes("yes")) {
                         fetch(
                              "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+data[element].studentName+".json",
                              {
