@@ -63,3 +63,17 @@
     font-size: xx-large;
     grid-row-start: 5;
 }
+
+.deleteButton{
+    border: 1px solid;
+    background-color: greenyellow;
+    border-radius: 15px;
+    font-size: xx-large;
+    font-family: sans-serif;
+    color: black;
+    padding: 10px;
+    position: fixed;
+    text-decoration: none;
+    top: 2%;
+    right: 1%;
+}

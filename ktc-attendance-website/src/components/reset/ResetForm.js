@@ -36,7 +36,7 @@ function ResetForm() {
                         )
                     }
                 })
-            })
+            }).catch(error => console.log(error))
         }
 
         else if (method === "year") {
@@ -50,7 +50,6 @@ function ResetForm() {
                         console.log("Entered Year Group is not a valid Year Group");
                     }
                     else if (data[element].yearGroup === yearGroupInputRef.current.value && data[element].paid.toLowerCase() === "yes") {
-                        //setStudentInfo(data[element]);
                         fetch(
                              "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+data[element].studentName+".json",
                              {
@@ -65,7 +64,7 @@ function ResetForm() {
                          )
                     }
                 })
-            })
+            }).catch(error => console.log(error))
         }
 
     }

@@ -12,6 +12,7 @@ function StudentInfo(props) {
 
     const [studentInfo, setStudentInfo] = useState({});
     const [isEditing, setIsEditing] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     const studentNameInputRef = useRef();
     const yearGroupInputRef = useRef();
@@ -42,6 +43,17 @@ function StudentInfo(props) {
         return id;
     }, [id]);
     
+    function deleteStudentHandler() {
+
+        fetch(
+            "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+studentInfo.studentName+".json",
+            {
+                method: "DELETE"
+            }
+        )
+
+        history.replace("/");
+    }
 
     function setEditingOn() {
 
@@ -255,6 +267,18 @@ function StudentInfo(props) {
             isEditing === false ? <button className={classes.editOnOrOff} onClick={() => setEditingOn()}>Edit</button>
             : 
             <button className={classes.editOnOrOff} onClick={() => setEditingOff()}>Save</button>
+            }
+
+            {
+                confirmDelete === false
+                ?
+                <button className={classes.deleteButton} onClick={() => setConfirmDelete(true)}>
+                    Delete Student?
+                </button>
+                :
+                <button className={classes.deleteButton} onClick={deleteStudentHandler}>
+                    Confirm?
+                </button>
             }
 
         </div>
