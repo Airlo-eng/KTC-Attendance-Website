@@ -6,6 +6,7 @@ import classes from "./ResetForm.module.css";
 function ResetForm() {
 
     const [method, setMethod] = useState("");
+    const [confirmReset, setConfirmReset] = useState(false);
     const yearGroupInputRef = useRef();
 
     function resetPaymentsHandler(event) {
@@ -14,13 +15,54 @@ function ResetForm() {
 
         if (method === "all") {
             fetch(
-                "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students"
+                "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students.json"
             )
             .then(response => response.json())
             .then(data => {
                 Object.keys(data).forEach(element => {
                     if (data[element].paid.toLowerCase() === "yes") {
-                        //TODO: Get the student info then delete the student and add a new student with same metadata but paid metadata not as yes.
+                        //setStudentInfo(data[element]);
+                        fetch(
+                            "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+data[element].studentName+".json",
+                            {
+                                method: "PATCH",
+                                body: JSON.stringify({
+                                    paid: "no"
+                                }),
+                                headers: {
+                                    "Content-Type": "application/json",
+                                }
+                            }
+                        )
+                    }
+                })
+            })
+        }
+
+        else if (method === "year") {
+            fetch(
+                "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students.json"
+            )
+            .then(response => response.json())
+            .then(data => {
+                Object.keys(data).forEach(element => {
+                    if (isNaN(yearGroupInputRef.current.value)) {
+                        console.log("Entered Year Group is not a valid Year Group");
+                    }
+                    else if (data[element].yearGroup === yearGroupInputRef.current.value && data[element].paid.toLowerCase() === "yes") {
+                        //setStudentInfo(data[element]);
+                        fetch(
+                             "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+data[element].studentName+".json",
+                             {
+                                 method: "PATCH",
+                                 body: JSON.stringify({
+                                     paid: "no"
+                                 }),
+                                 headers: {
+                                     "Content-Type": "application/json",
+                                 }
+                             }
+                         )
                     }
                 })
             })
@@ -52,10 +94,7 @@ function ResetForm() {
                     <br/><br/>
                     <br/><br/>
 
-                    {
-                        method !== ""
-                        ?
-                        <form>
+                    <form>
 
                         {
                             method === "all"
@@ -83,14 +122,23 @@ function ResetForm() {
 
                         <br/><br/>
                         <br/><br/>
-                        <button className="btn-textfield" onSubmit={resetPaymentsHandler}>
-                            Confirm Reset?
-                        </button>
+                        {
+                            confirmReset === false
+                            ?
+                            <button className="btn-textfield" onClick={event => {
+                                event.preventDefault();
+                                setConfirmReset(true);
+                            }}>
+                                Reset?
+                            </button>
+                            :
+                            <button className="btn-textfield" onClick={resetPaymentsHandler}>
+                                Confirm Reset?
+                            </button>
+
+                        }
 
                     </form>
-                        :
-                        <div></div>
-                    }
 
             </div>
             

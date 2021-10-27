@@ -74,11 +74,7 @@ function StudentInfo(props) {
         fetch(
             "https://ktc-attendance-app-default-rtdb.europe-west1.firebasedatabase.app/students/"+studentInfo.studentName+".json",
             {
-                method: "DELETE",
-                body: JSON.stringify(studentData),
-                headers: {
-                    "Content-Type": "application/json",
-                }
+                method: "DELETE"
             }
         )
         .then(() => {
